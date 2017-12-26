@@ -1,0 +1,39 @@
+<p></p>
+<div class="container">
+  <div class="panel  panel-primary">
+    <div class="panel-heading">Gallery Component </div>
+    <div class="panel-body">
+      <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+        <div class="form-group">
+          <label >Key Word:</label>
+          <input type="text" name="keyWord" ngModel required [(ngModel)]="keyWord">
+          <button type="submit" class="btn btn-primary">Find</button>
+        </div>
+      </form>
+      <div class="row">
+          <div *ngFor="let p of pagePhotos?.hits" class="col-md-3" >
+            <div class="panel panel-primary cadre">
+              <div class="panel-heading">
+                   {{p.tags}}
+              </div>
+              <div class="panel-body">
+                <div>
+                  <p>User : {{p.user}}</p>
+                </div>
+                <img src="{{p.previewURL}}" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <ul class="nav nav-pills">
+            <li [ngClass]="{'active':this.currentPage==i+1}" *ngFor="let page of pages; let i=index">
+              <a (click)="goToPage(i)">{{i}}</a>
+            </li>
+          </ul>
+       </div>
+
+    </div>
+</div>
+</div>
